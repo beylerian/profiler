@@ -17,8 +17,47 @@
 
 package opennlp.tools.profiler;
 
+import java.util.ArrayList;
+
 /**
  * Created by anthony on 4/20/16.
  */
-public class Profiler {
+public abstract class Profiler {
+
+  /**
+   * @param sample
+   * @return M or F based on the classification based on one sample
+   */
+  public abstract String genderize(ProfilerSample sample);
+
+  /**
+   * @param samples
+   * @return M or F based on the classification based on many samples
+   */
+  public abstract String genderize(ArrayList<ProfilerSample> samples);
+
+  /**
+   * @param sample
+   * @return [18-34] or [35-xx] based on the classification based on one sample
+   */
+  public abstract String binaryAge(ProfilerSample sample);
+
+  /**
+   * @param samples
+   * @return [18-34] or [35-xx] based on the classification based on many samples
+   */
+  public abstract String binaryAge(ArrayList<ProfilerSample> samples);
+
+  /**
+   * @param sample
+   * @return [18-24], [25-34], [35-49], [50-64], [65-xx] based on the classification based on one sample
+   */
+  public abstract String quinaryAge(ProfilerSample sample);
+
+  /**
+   * @param samples
+   * @return [18-24], [25-34], [35-49], [50-64], [65-xx] based on the classification based on many samples
+   */
+  public abstract String quinaryAge(ArrayList<ProfilerSample> samples);
+
 }

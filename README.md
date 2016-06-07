@@ -1,5 +1,7 @@
 ### Author Profiler
 
+Detects simple latent attributes in text samples
+
 #### Gender detection
 Male, Female
 
@@ -9,4 +11,7 @@ Male, Female
 2- Quinary :  [18-24],  [25-34], [35-49], [50-64], [65-xx]
 
 #### Test sets
+
+Tweet set :
+
 http://pan.webis.de/clef16/pan16-web/author-profiling.html
