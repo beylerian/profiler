@@ -17,8 +17,66 @@
 
 package opennlp.tools.profiler;
 
+import opennlp.tools.ml.model.AbstractModel;
+import opennlp.tools.ml.model.MaxentModel;
+import opennlp.tools.util.BaseToolFactory;
+import opennlp.tools.util.InvalidFormatException;
+import opennlp.tools.util.model.BaseModel;
+
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
+import java.util.Map;
+
 /**
  * Created by anthony on 4/20/16.
  */
-public class ProfilerModel {
+public class ProfilerModel extends BaseModel {
+  private static final String COMPONENT_NAME = "ProfilerME";
+  private static final String PROFILER_MODEL_ENTRY_NAME = "profiler.model";
+
+  public ProfilerModel(String languageCode, MaxentModel profilerModel,
+    Map<String, String> manifestInfoEntries, ProfilerFactory factory) {
+    super(COMPONENT_NAME, languageCode, manifestInfoEntries, factory);
+
+    artifactMap.put(PROFILER_MODEL_ENTRY_NAME, profilerModel);
+    checkArtifactMap();
+  }
+
+  public ProfilerModel(InputStream in)
+    throws IOException, InvalidFormatException {
+    super(COMPONENT_NAME, in);
+  }
+
+  public ProfilerModel(File modelFile)
+    throws IOException, InvalidFormatException {
+    super(COMPONENT_NAME, modelFile);
+  }
+
+  public ProfilerModel(URL modelURL)
+    throws IOException, InvalidFormatException {
+    super(COMPONENT_NAME, modelURL);
+  }
+
+  @Override protected void validateArtifactMap() throws InvalidFormatException {
+    super.validateArtifactMap();
+
+    if (!(artifactMap
+      .get(PROFILER_MODEL_ENTRY_NAME) instanceof AbstractModel)) {
+      throw new InvalidFormatException("problem in the model");
+    }
+  }
+
+  public ProfilerFactory getFactory() {
+    return (ProfilerFactory) this.toolFactory;
+  }
+
+  @Override protected Class<? extends BaseToolFactory> getDefaultFactory() {
+    return ProfilerFactory.class;
+  }
+
+  public MaxentModel getMaxentModel() {
+    return (MaxentModel) artifactMap.get(PROFILER_MODEL_ENTRY_NAME);
+  }
 }

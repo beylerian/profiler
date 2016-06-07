@@ -20,5 +20,6 @@ package opennlp.tools.profiler;
 /**
  * Created by anthony on 4/20/16.
  */
-public class ProfilerContextGenerator {
+public interface ProfilerContextGenerator {
+  String[] getContext();
 }

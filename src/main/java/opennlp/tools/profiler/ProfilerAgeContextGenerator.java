@@ -17,41 +17,13 @@
 
 package opennlp.tools.profiler;
 
-import java.util.ArrayList;
-
 /**
- * Created by anthony on 4/20/16.
+ * Created by anthony on 6/8/16.
  */
-public class ProfilerME extends Profiler {
+public class ProfilerAgeContextGenerator implements ProfilerContextGenerator {
 
-  private ProfilerModel model;
-  private ProfilerContextGenerator mContextGenerator;
+  public String[] getContext() {
 
-  public ProfilerME(ProfilerModel model) {
-    this.model = model;
-  }
-
-  @Override public String genderize(ProfilerSample sample) {
-    return null;
-  }
-
-  @Override public String genderize(ArrayList<ProfilerSample> samples) {
-    return null;
-  }
-
-  @Override public String binaryAge(ProfilerSample sample) {
-    return null;
-  }
-
-  @Override public String binaryAge(ArrayList<ProfilerSample> samples) {
-    return null;
-  }
-
-  @Override public String quinaryAge(ProfilerSample sample) {
-    return null;
-  }
-
-  @Override public String quinaryAge(ArrayList<ProfilerSample> samples) {
     return null;
   }
 }

@@ -17,8 +17,15 @@
 
 package opennlp.tools.profiler;
 
+import opennlp.tools.util.BaseToolFactory;
+import opennlp.tools.util.InvalidFormatException;
+
 /**
  * Created by anthony on 4/20/16.
  */
-public class ProfilerFactory {
+public class ProfilerFactory extends BaseToolFactory {
+
+  @Override public void validateArtifactMap() throws InvalidFormatException {
+
+  }
 }
