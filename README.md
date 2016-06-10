@@ -3,6 +3,7 @@
 Detects simple latent attributes in text samples
 
 Uses Apache OpenNLP for classification
+
 Uses Apache Tika for document parsing
 
 #### Gender detection
@@ -16,9 +17,13 @@ Male, Female
 #### Personality profiling
 
 extroverted
+
 stable
+
 agreeable
+
 conscientious
+
 open
 
 #### Test sets
