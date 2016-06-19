@@ -24,6 +24,21 @@ import java.util.ArrayList;
  */
 public abstract class Profiler {
 
+  // Enum of all types of age ranges
+  public enum AGE_RANGES {
+    AGE_18_34, AGE_35_XX, AGE_18_24, AGE_25_34, AGE_35_49, AGE_50_65, AGE_65_XX
+  }
+
+  // Enum of all types of genders
+  public enum GENDERS {
+    GENDER_M, GENDER_F
+  }
+
+  // Enum of all types of personality traits
+  public enum TRAITS {
+    TRAIT_EXTROVERT, TRAIT_STABLE, TRAIT_AGREEABLE, TRAIT_CONSCIENTIOUS, TRAIT_OPEN
+  }
+
   /**
    * @param sample
    * @return M or F based on the classification based on one sample

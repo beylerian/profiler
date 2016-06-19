@@ -100,3 +100,5 @@ local.properties
 # TeXlipse plugin
 .texlipse
 
+# Datasets
+src/main/resources/datasets/*
