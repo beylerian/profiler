@@ -31,16 +31,20 @@ public class ProfileParserConfig {
   private URL ageProfilerModelUrl = null;
   private URL genderProfilerModelUrl = null;
 
-  private static final Logger LOG = Logger.getLogger(ProfileParserConfig.class.getName());
+  private static final Logger LOG = Logger
+    .getLogger(ProfileParserConfig.class.getName());
 
   public ProfileParserConfig() {
-    this.ageProfilerModelUrl = ProfileParserConfig.class.getResource("en-age-profiler.bin");
-    this.genderProfilerModelUrl = ProfileParserConfig.class.getResource("en-gender-profiler.bin");
+    this.ageProfilerModelUrl = ProfileParserConfig.class
+      .getResource("en-age-profiler.bin");
+    this.genderProfilerModelUrl = ProfileParserConfig.class
+      .getResource("en-gender-profiler.bin");
     init(this.getClass().getResourceAsStream("ProfileParserConfig.properties"));
   }
 
   /**
    * Initialize configurations from property files
+   *
    * @param stream InputStream for GeoTopicConfig.properties
    */
   private void init(InputStream stream) {

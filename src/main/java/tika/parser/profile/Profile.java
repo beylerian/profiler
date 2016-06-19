@@ -24,8 +24,6 @@ import java.util.ArrayList;
  */
 public class Profile {
 
-
-
   private String ageRange;
   private String gender;
   private ArrayList<Double> traits;

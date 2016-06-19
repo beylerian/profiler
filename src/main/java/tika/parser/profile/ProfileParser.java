@@ -63,40 +63,42 @@ public class ProfileParser extends AbstractParser {
 
   /**
    * Initializes this parser
-   * @param ageModelUrl the URL to age Profiler model
+   *
+   * @param ageModelUrl    the URL to age Profiler model
    * @param genderModelUrl the URL to gender Profiler model
    */
   public void initialize(URL ageModelUrl, URL genderModelUrl) {
     if (this.ageModelUrl != null && this.ageModelUrl.equals(ageModelUrl)
-      && this.genderModelUrl != null && this.genderModelUrl.equals(genderModelUrl)) {
+      && this.genderModelUrl != null && this.genderModelUrl
+      .equals(genderModelUrl)) {
       return;
     }
 
     this.ageModelUrl = ageModelUrl;
     this.genderModelUrl = genderModelUrl;
 
-      try {
-        ProfilerModel ageModel = new ProfilerModel(ageModelUrl);
-        this.ageProfiler = new ProfilerME(ageModel);
+    try {
+      ProfilerModel ageModel = new ProfilerModel(ageModelUrl);
+      this.ageProfiler = new ProfilerME(ageModel);
 
-        ProfilerModel genderModel = new ProfilerModel(genderModelUrl);
-        this.genderProfiler = new ProfilerME(genderModel);
-      } catch (Exception e) {
-        LOG.warning("Profiler setup failed: " + e);
-        this.available = false;
-        e.printStackTrace();
-      }
+      ProfilerModel genderModel = new ProfilerModel(genderModelUrl);
+      this.genderProfiler = new ProfilerME(genderModel);
+    } catch (Exception e) {
+      LOG.warning("Profiler setup failed: " + e);
+      this.available = false;
+      e.printStackTrace();
+    }
 
     initialized = true;
   }
-
 
   public void parse(InputStream inputStream, ContentHandler contentHandler,
     Metadata metadata, ParseContext parseContext)
     throws IOException, SAXException, TikaException {
 
     this.config = parseContext.get(ProfileParserConfig.class, config);
-    initialize(this.config.getAgeProfilerModelUrl(), this.config.getGenderProfilerModelUrl());
+    initialize(this.config.getAgeProfilerModelUrl(),
+      this.config.getGenderProfilerModelUrl());
     if (!isAvailable()) {
       return;
     }
@@ -113,18 +115,23 @@ public class ProfileParser extends AbstractParser {
 
     metadata.add("Author_AGE", profile.getAgeRange());
     metadata.add("Author_GENDER", profile.getGender());
-    metadata.add(Profiler.TRAITS.TRAIT_AGREEABLE.name(), Double.toString(profile.getTraits().get(0)));
-    metadata.add(Profiler.TRAITS.TRAIT_CONSCIENTIOUS.name(), Double.toString(profile.getTraits().get(1)));
-    metadata.add(Profiler.TRAITS.TRAIT_EXTROVERT.name(), Double.toString(profile.getTraits().get(2)));
-    metadata.add(Profiler.TRAITS.TRAIT_OPEN.name(), Double.toString(profile.getTraits().get(3)));
-    metadata.add(Profiler.TRAITS.TRAIT_STABLE.name(), Double.toString(profile.getTraits().get(4)));
+    metadata.add(Profiler.TRAITS.TRAIT_AGREEABLE.name(),
+      Double.toString(profile.getTraits().get(0)));
+    metadata.add(Profiler.TRAITS.TRAIT_CONSCIENTIOUS.name(),
+      Double.toString(profile.getTraits().get(1)));
+    metadata.add(Profiler.TRAITS.TRAIT_EXTROVERT.name(),
+      Double.toString(profile.getTraits().get(2)));
+    metadata.add(Profiler.TRAITS.TRAIT_OPEN.name(),
+      Double.toString(profile.getTraits().get(3)));
+    metadata.add(Profiler.TRAITS.TRAIT_STABLE.name(),
+      Double.toString(profile.getTraits().get(4)));
 
   }
 
-
   public boolean isAvailable() {
     if (!initialized) {
-      initialize(config.getAgeProfilerModelUrl(), config.getGenderProfilerModelUrl());
+      initialize(config.getAgeProfilerModelUrl(),
+        config.getGenderProfilerModelUrl());
     }
     return this.available;
   }

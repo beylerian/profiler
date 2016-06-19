@@ -6,7 +6,7 @@ import java.util.Collection;
 /**
  * Created by anthony on 6/8/16.
  */
-public class ProfilerAgeFeatureGenerator implements ProfilerFeatureGenerator{
+public class ProfilerAgeFeatureGenerator implements ProfilerFeatureGenerator {
   public Collection<String> extractFeatures(ProfilerSample sample) {
     return null;
   }
