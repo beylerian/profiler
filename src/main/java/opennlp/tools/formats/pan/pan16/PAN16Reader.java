@@ -34,7 +34,7 @@ import java.util.HashMap;
  */
 public class PAN16Reader {
 
-	private static final String dataFolder = "/datasets/author-profiling/pan16-author-profiling-training-dataset-english-2016-02-29/";
+	private static final String dataFolder = "/datasets/pan16-author-profiling-training-dataset-english-2016-02-29/";
 
 
 	public static ArrayList<PAN16Author> getPAN16Authors(int startAuthorIndex, int endAuthorIndex) {
