@@ -17,10 +17,7 @@
 
 package tika.parser.profile;
 
-import opennlp.tools.profiler.Profiler;
-import opennlp.tools.profiler.ProfilerME;
-import opennlp.tools.profiler.ProfilerSample;
-import opennlp.tools.util.Span;
+import opennlp.tools.profiler.*;
 import org.apache.commons.io.IOUtils;
 
 import java.io.IOException;
@@ -35,10 +32,10 @@ import static java.nio.charset.StandardCharsets.UTF_8;
 public class ProfileExtractor {
 
   private Profile profile;
-  private final ProfilerME ageProfiler;
-  private final ProfilerME genderProfiler;
+  private final AgeProfilerME ageProfiler;
+  private final GenderProfilerME genderProfiler;
 
-  public ProfileExtractor(ProfilerME ageProfiler, ProfilerME genderProfiler)
+  public ProfileExtractor(AgeProfilerME ageProfiler, GenderProfilerME genderProfiler)
     throws IOException {
     this.ageProfiler = ageProfiler;
     this.genderProfiler = genderProfiler;
@@ -55,14 +52,14 @@ public class ProfileExtractor {
         // TODO default is binary may want to modify depending on configuration
         String age = ageProfiler.binaryAge(sample);
         // TODO change default result by mapped one
-        profile.setAgeRange(Profiler.AGE_RANGES.AGE_18_24.name());
+        profile.setAgeRange(AgeProfiler.AGE_RANGES.AGE_18_24.name());
       }
     }
     if (genderProfiler != null) {
       synchronized (genderProfiler) {
         String gender = genderProfiler.genderize(sample);
         // TODO change default result by mapped one
-        profile.setGender(Profiler.GENDERS.GENDER_F.name());
+        profile.setGender(GenderProfiler.GENDERS.GENDER_F.name());
       }
     }
 

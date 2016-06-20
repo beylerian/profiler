@@ -17,41 +17,45 @@
 
 package opennlp.tools.profiler;
 
+import opennlp.tools.util.ObjectStream;
+import opennlp.tools.util.TrainingParameters;
+
+import java.io.IOException;
 import java.util.ArrayList;
 
 /**
  * Created by anthony on 4/20/16.
  */
-public class ProfilerME extends Profiler {
+public class GenderProfilerME implements GenderProfiler {
 
   private ProfilerModel model;
   private ProfilerContextGenerator mContextGenerator;
 
-  public ProfilerME(ProfilerModel model) {
+  public GenderProfilerME(ProfilerModel model) {
     this.model = model;
   }
 
-  @Override public String genderize(ProfilerSample sample) {
+  public String genderize(ProfilerSample sample) {
     return null;
   }
 
-  @Override public String genderize(ArrayList<ProfilerSample> samples) {
+  public String genderize(ArrayList<ProfilerSample> samples) {
     return null;
   }
 
-  @Override public String binaryAge(ProfilerSample sample) {
-    return null;
-  }
+  /**
+   * Trains a Profiler model with default feature generation.
+   *
+   * @param languageCode
+   * @param samples
+   * @return the trained profiler model
+   * @throws IOException
+   */
+  public static ProfilerModel train(String languageCode,
+    ObjectStream<ProfilerSample> samples, TrainingParameters trainParams,
+    ProfilerFactory profilerFactory) throws IOException {
 
-  @Override public String binaryAge(ArrayList<ProfilerSample> samples) {
     return null;
-  }
 
-  @Override public String quinaryAge(ProfilerSample sample) {
-    return null;
-  }
-
-  @Override public String quinaryAge(ArrayList<ProfilerSample> samples) {
-    return null;
   }
 }

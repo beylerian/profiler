@@ -33,7 +33,7 @@ import java.util.Map;
  * Created by anthony on 4/20/16.
  */
 public class ProfilerModel extends BaseModel {
-  private static final String COMPONENT_NAME = "ProfilerME";
+  private static final String COMPONENT_NAME = "GenderProfilerME";
   private static final String PROFILER_MODEL_ENTRY_NAME = "profiler.model";
 
   public ProfilerModel(String languageCode, MaxentModel profilerModel,

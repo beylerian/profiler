@@ -17,9 +17,7 @@
 
 package tika.parser.profile;
 
-import opennlp.tools.profiler.Profiler;
-import opennlp.tools.profiler.ProfilerME;
-import opennlp.tools.profiler.ProfilerModel;
+import opennlp.tools.profiler.*;
 import org.apache.tika.exception.TikaException;
 import org.apache.tika.metadata.Metadata;
 import org.apache.tika.mime.MediaType;
@@ -48,8 +46,8 @@ public class ProfileParser extends AbstractParser {
 
   private ProfileParserConfig config = new ProfileParserConfig();
 
-  private ProfilerME ageProfiler;
-  private ProfilerME genderProfiler;
+  private AgeProfilerME ageProfiler;
+  private GenderProfilerME genderProfiler;
 
   private URL ageModelUrl;
   private URL genderModelUrl;
@@ -79,10 +77,10 @@ public class ProfileParser extends AbstractParser {
 
     try {
       ProfilerModel ageModel = new ProfilerModel(ageModelUrl);
-      this.ageProfiler = new ProfilerME(ageModel);
+      this.ageProfiler = new AgeProfilerME(ageModel);
 
       ProfilerModel genderModel = new ProfilerModel(genderModelUrl);
-      this.genderProfiler = new ProfilerME(genderModel);
+      this.genderProfiler = new GenderProfilerME(genderModel);
     } catch (Exception e) {
       LOG.warning("Profiler setup failed: " + e);
       this.available = false;
@@ -115,15 +113,15 @@ public class ProfileParser extends AbstractParser {
 
     metadata.add("Author_AGE", profile.getAgeRange());
     metadata.add("Author_GENDER", profile.getGender());
-    metadata.add(Profiler.TRAITS.TRAIT_AGREEABLE.name(),
+    metadata.add("Author_"+ TraitProfiler.TRAITS.TRAIT_AGREEABLE.name(),
       Double.toString(profile.getTraits().get(0)));
-    metadata.add(Profiler.TRAITS.TRAIT_CONSCIENTIOUS.name(),
+    metadata.add("Author_"+ TraitProfiler.TRAITS.TRAIT_CONSCIENTIOUS.name(),
       Double.toString(profile.getTraits().get(1)));
-    metadata.add(Profiler.TRAITS.TRAIT_EXTROVERT.name(),
+    metadata.add("Author_"+ TraitProfiler.TRAITS.TRAIT_EXTROVERT.name(),
       Double.toString(profile.getTraits().get(2)));
-    metadata.add(Profiler.TRAITS.TRAIT_OPEN.name(),
+    metadata.add("Author_"+ TraitProfiler.TRAITS.TRAIT_OPEN.name(),
       Double.toString(profile.getTraits().get(3)));
-    metadata.add(Profiler.TRAITS.TRAIT_STABLE.name(),
+    metadata.add("Author_"+ TraitProfiler.TRAITS.TRAIT_STABLE.name(),
       Double.toString(profile.getTraits().get(4)));
 
   }

@@ -17,9 +17,28 @@
 
 package opennlp.tools.profiler;
 
+import java.util.ArrayList;
+
 /**
- * Created by anthony on 4/20/16.
+ * Created by anthony on 6/20/16.
  */
-public interface Profiler {
+public interface GenderProfiler extends Profiler {
+
+  // Enum of all types of genders
+  enum GENDERS {
+    GENDER_M, GENDER_F
+  }
+
+  /**
+   * @param sample
+   * @return M or F based on the classification based on one sample
+   */
+  String genderize(ProfilerSample sample);
+
+  /**
+   * @param samples
+   * @return M or F based on the classification based on many samples
+   */
+  String genderize(ArrayList<ProfilerSample> samples);
 
 }

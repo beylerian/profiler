@@ -17,8 +17,32 @@
 
 package opennlp.tools.profiler;
 
+import opennlp.tools.doccat.FeatureGenerator;
+import opennlp.tools.ml.model.Event;
+import opennlp.tools.util.AbstractEventStream;
+import opennlp.tools.util.ObjectStream;
+
+import java.util.Iterator;
+
 /**
  * Created by anthony on 4/20/16.
  */
-public class ProfilerEventStream {
+public class ProfilerEventStream extends AbstractEventStream<ProfilerSample> {
+
+  /**
+   * Initializes the current instance.
+   *
+   * @param data {@link ObjectStream} of {@link ProfilerSample}s
+   *
+   * @param featureGenerators
+   */
+  public ProfilerEventStream(ObjectStream<ProfilerSample> data, FeatureGenerator... featureGenerators) {
+    super(data);
+  }
+
+  @Override
+  protected Iterator<Event> createEvents(final ProfilerSample sample) {
+    return null;
+
+  }
 }
