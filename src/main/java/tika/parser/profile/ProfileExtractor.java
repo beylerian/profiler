@@ -20,10 +20,12 @@ package tika.parser.profile;
 import opennlp.tools.profiler.Profiler;
 import opennlp.tools.profiler.ProfilerME;
 import opennlp.tools.profiler.ProfilerSample;
+import opennlp.tools.util.Span;
 import org.apache.commons.io.IOUtils;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Arrays;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
 
@@ -42,21 +44,26 @@ public class ProfileExtractor {
     this.genderProfiler = genderProfiler;
   }
 
-  // TODO fix when sample is ready
   public Profile getProfileFromInput(InputStream stream) throws IOException {
     String[] in = IOUtils.toString(stream, UTF_8).split(" ");
 
     profile = new Profile();
-
-    ProfilerSample sample = new ProfilerSample();
+    ProfilerSample sample = new ProfilerSample(in[0], in[1], Arrays.copyOfRange(in,2,in.length-1));
 
     if (ageProfiler != null) {
-      String age = ageProfiler.binaryAge(sample);
-      profile.setAgeRange(Profiler.AGE_RANGES.AGE_18_24.name());
+      synchronized (ageProfiler) {
+        // TODO default is binary may want to modify depending on configuration
+        String age = ageProfiler.binaryAge(sample);
+        // TODO change default result by mapped one
+        profile.setAgeRange(Profiler.AGE_RANGES.AGE_18_24.name());
+      }
     }
     if (genderProfiler != null) {
-      String gender = genderProfiler.genderize(sample);
-      profile.setGender(Profiler.GENDERS.GENDER_F.name());
+      synchronized (genderProfiler) {
+        String gender = genderProfiler.genderize(sample);
+        // TODO change default result by mapped one
+        profile.setGender(Profiler.GENDERS.GENDER_F.name());
+      }
     }
 
     return profile;

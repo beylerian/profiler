@@ -47,7 +47,7 @@ public class ProfilerSampleStream
         String gender = tokens[0];
         String age = tokens[1];
         String docTokens[] = new String[tokens.length - 2];
-        System.arraycopy(tokens, 2, docTokens, 0, tokens.length - 2);
+        System.arraycopy(tokens, 2, docTokens, 0, tokens.length - 1);
 
         sample = new ProfilerSample(gender, age, docTokens);
       } else {
