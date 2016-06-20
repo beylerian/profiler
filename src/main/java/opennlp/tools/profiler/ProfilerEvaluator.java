@@ -46,7 +46,7 @@ public class ProfilerEvaluator extends Evaluator<ProfilerSample> {
     this.profiler = profiler;
   }
 
-  // @Override
+  @Override
   protected ProfilerSample processSample(ProfilerSample reference) {
 
     String referenceAge = reference.getAge();
