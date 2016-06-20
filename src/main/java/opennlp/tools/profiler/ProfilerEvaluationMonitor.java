@@ -17,8 +17,20 @@
 
 package opennlp.tools.profiler;
 
+import opennlp.tools.util.eval.EvaluationMonitor;
+
 /**
  * Created by anthony on 4/20/16.
  */
-public class ProfilerEvaluationMonitor {
+public class ProfilerEvaluationMonitor
+  implements EvaluationMonitor<ProfilerSample> {
+  public void correctlyClassified(ProfilerSample reference,
+    ProfilerSample prediction) {
+
+  }
+
+  public void missclassified(ProfilerSample reference,
+    ProfilerSample prediction) {
+
+  }
 }
