@@ -18,7 +18,7 @@ Male, Female
 
 extroverted
 
-stable
+stable/neurotic
 
 agreeable
 
