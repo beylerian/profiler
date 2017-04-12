@@ -6,17 +6,17 @@ Uses Apache OpenNLP for classification
 
 Uses Apache Tika for document parsing
 
-#### Gender detection
+#### Gender
 
 - Male
 - Female
 
-#### Age range detection
+#### Age range
 
 - young [~20s]
 - mature [20s+]
 
-#### Variety profiling
+#### Variety
 
 - United states
 - Canada
@@ -25,7 +25,7 @@ Uses Apache Tika for document parsing
 - Ireland
 - New zealand
 
-#### Personality profiling
+#### Personality
 
 - extroverted
 - stable/neurotic
