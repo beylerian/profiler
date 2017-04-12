@@ -13,8 +13,8 @@ Uses Apache Tika for document parsing
 
 #### Age range detection
 
-- Binary : [18-34], [35-xx]
-- Quinary :  [18-24],  [25-34], [35-49], [50-64], [65-xx]
+- young [~20s]
+- mature [20s+]
 
 #### Variety profiling
 
